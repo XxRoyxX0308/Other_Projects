@@ -1,0 +1,62 @@
+//ESP8266 Wi-Fi 的函式，可輕鬆使用 Wi-Fi 通訊。
+#include <ESP8266WiFi.h>
+
+//設定所連接 Wi-Fi 的名子
+String ssid="Lion-Phone";
+//設定所連接 Wi-Fi 的密碼
+String password="0972361250";
+//創建和管理 ESP8266 上的 HTTP 伺服器，並將其設置為80端口。
+WiFiServer server(80);
+
+void setup() {
+  //設定設備與 Arduino IDE 之間的傳輸速率為115200位元組每秒。
+  //需要確保 Arduino IDE 和對應的設備使用相同的速率，才能正確地傳輸和接收數據。
+  Serial.begin(115200);
+  delay(10);
+
+  pinMode(LED_BUILTIN,OUTPUT);
+  digitalWrite(LED_BUILTIN,0);
+  
+  //連接到 Wi-Fi，需要兩個參數 Wi-Fi 名稱、密碼。
+  WiFi.begin(ssid,password);
+  //打印到串口監視，最後會換行。
+  Serial.println();
+  //一直檢查 Wi-Fi 連接的狀態，直到成功連接到指定的 Wi-Fi。
+  while(WiFi.status()!=WL_CONNECTED)
+  {
+    delay(500);
+    //打印到串口監視，最後不會換行。
+    Serial.print(".");
+  }
+
+  Serial.println();
+  //打印出 ESP8266 的 IP 地址。
+  Serial.println(WiFi.localIP());
+  //啟動 HTTP 伺服器，以便可以通過瀏覽器訪問 ESP8266。
+  server.begin();
+}
+
+void loop() {
+  //檢查是否有新的 HTTP 請求。
+  WiFiClient client=server.available();
+  //如果沒有請求就返回到主循環中等待下一個 HTTP 請求。
+  if(!client) return;
+  //等待客戶端向伺服器發送數據。
+  while(!client.available()) delay(1);
+
+  //接收客戶端發送的數據。
+  String a=client.readStringUntil('\r');
+  //強制將緩衝區中的數據立即發送到伺服器端。
+  client.flush();
+  
+  //瀏覽器會自動發送 favicon.ico 的請求，因此過濾掉。
+  if(a!="GET /favicon.ico HTTP/1.1")
+  {
+    //如果接收到 on 的請求，就開啟內建藍燈。
+    if(a.indexOf("/on")!=-1) digitalWrite(LED_BUILTIN,0);
+    //如果接收到 off 的請求，就關閉內建藍燈。
+    if(a.indexOf("/off")!=-1) digitalWrite(LED_BUILTIN,1);
+    //打印出客戶端請求。
+    Serial.println(a);
+  }
+}

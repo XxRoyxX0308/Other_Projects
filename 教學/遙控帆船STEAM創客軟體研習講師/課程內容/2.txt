@@ -1,0 +1,21 @@
+//Arduino IDE 內建的伺服馬達函式庫。
+#include <Servo.h>
+
+//設定控制伺服馬達的變數。
+Servo servo1;
+
+void setup() {
+  //設定要將伺服馬達接到哪一個 GPIO腳位。
+  servo1.attach(13);
+  //旋轉伺服馬達到指定角，角度0~180。
+  servo1.write(180);
+}
+
+void loop() {
+  servo1.write(180);
+  delay(500);
+  servo1.write(90);
+  delay(500);
+  servo1.write(0);
+  delay(500);
+}

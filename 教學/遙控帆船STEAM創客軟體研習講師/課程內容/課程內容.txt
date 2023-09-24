@@ -1,0 +1,64 @@
+downland Arduino IDE:
+https://www.arduino.cc/en/software
+
+GPIO腳位:
+https://honeststore.com.tw/esp8266-pin-out/
+
+ESP-8266 初始化:
+https://sites.google.com/site/arduinochutiyan/home/nodemcu/arduino-%E7%92%B0%E5%A2%83%E5%BB%BA%E7%BD%AE-%E5%AE%89%E8%A3%9Desp8266%E9%96%8B%E7%99%BC%E6%9D%BF
+檔案/偏好設定 下方"額外的開發板管理員網址":http://arduino.esp8266.com/stable/package_esp8266com_index.json
+工具/開發板==>開發板管理員:ESP8266
+工具/開發板/esp8266/NodeMCU 1.0(ESP-12E Module)
+
+Arduino 程式:
+完成1程式 練習開關內建藍燈
+
+https://blog.jmaker.com.tw/arduino-servo-sg90/
+完成2程式 練習控制馬達
+
+https://ithelp.ithome.com.tw/articles/10242843
+完成3程式 練習遠端開關藍燈
+
+完成4程式 遠端控制馬達
+
+APP inventor:
+
+第一頁:
+
+畫面排版:
+Screen1
+標籤x1
+文字輸入框x1
+按鈕x1
+資料儲存==>檔案管理x1
+
+程式設計:
+完成App Inventor 1
+
+新增螢幕==>第二頁:
+
+畫面排版:
+Screen2   //Screen2==>螢幕方向==>鎖定橫向畫面 居中 居中
+介面配置==>水平配置x1           //寬度全填滿
+  滑桿x1   //最大值180 最小值0
+  繪畫動畫==>畫布x1
+  滑桿x1   //最大值180 最小值0
+標籤x1   //居中
+通訊==>網路x1
+感測器==>計時器x1
+
+程式設計:
+完成App Inventor 2
+
+END~
+
+
+
+每組需求:
+手機(安卓系統)x1
+電腦x1
+ESP-8266x1
+伺服馬達x2
+電池盒x1
+Micro USBx1
+杜邦線(公對母)x8

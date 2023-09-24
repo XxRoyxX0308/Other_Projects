@@ -1,0 +1,16 @@
+//設定區塊，可以在這裡設定與初始化，執行的順序優先於 loop，且只會執行一次。
+void setup() {
+  //用於設置特定的 GPIO腳位在程式中的使用方式，包括輸入和輸出(OUTPUT/INPUT)。
+  pinMode(LED_BUILTIN,OUTPUT);   //LED_BUILTIN=2 因此會與GPIO2衝突
+}
+
+//無窮迴圈區塊，在這裡就會一直重複執，如同強制性的 while 迴圈。
+void loop() {
+  //設定指定腳位的狀態，只有兩種狀態高電位(HIGH)與低電位(LOW)。
+  digitalWrite(LED_BUILTIN,LOW);
+  //顧名思義就是等待，給入一個值，單位是毫秒。
+  delay(1000);
+  //設定指定腳位的狀態，可輸出不同的電壓，範圍255~0(高到低)。
+  for(int i=0;i<255;i++) analogWrite(LED_BUILTIN,i);
+  delay(1000);
+}
